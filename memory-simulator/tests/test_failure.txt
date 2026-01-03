@@ -1,0 +1,4 @@
+init memory 50
+malloc 40
+malloc 20
+exit
