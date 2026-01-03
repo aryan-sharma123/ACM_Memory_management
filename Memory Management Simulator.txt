@@ -1,0 +1,237 @@
+Memory Management Simulator
+Overview
+
+This project is a Memory Management Simulator implemented in C++ that models how an operating system manages memory at multiple levels.
+It simulates dynamic memory allocation, multilevel CPU caches, and virtual memory using paging, with a command-line interface for interaction.
+
+The goal of this project is not to build a real OS kernel, but to accurately simulate OS memory-management behavior using well-defined data structures and algorithms.
+
+Features Implemented
+1. Physical Memory Allocation
+
+Simulates a contiguous block of physical memory
+
+Supports dynamic allocation and deallocation
+
+Explicit tracking of allocated and free blocks
+
+Automatic coalescing of adjacent free blocks
+
+2. Allocation Strategies
+
+First Fit
+
+Best Fit
+
+Worst Fit
+
+Allocation includes:
+
+Block splitting
+
+Fragmentation tracking
+
+3. Memory Metrics & Statistics
+
+The simulator reports:
+
+Total memory
+
+Used memory
+
+Free memory
+
+Internal fragmentation
+
+External fragmentation
+
+Allocation success rate
+
+Failed allocations
+
+Memory utilization
+
+4. Buddy Memory Allocation (Optional Extension)
+
+Memory size must be a power of two
+
+Allocation rounds up to nearest power of two
+
+Recursive splitting and buddy coalescing using XOR
+
+Internal fragmentation tracking
+
+5. Multilevel Cache Simulation (MUST HAVE)
+
+L1, L2, and L3 caches
+
+Configurable:
+
+Cache size
+
+Block size
+
+Associativity
+
+Replacement policies:
+
+FIFO
+
+LRU
+
+Tag, index, and offset based addressing
+
+Miss penalty propagation across cache levels
+
+Cache hit/miss statistics
+
+Reports the level (L1/L2/L3/Memory) serving each access
+
+6. Virtual Memory Simulation (Optional Extension)
+
+Paging-based virtual memory model
+
+Address translation:
+
+Virtual Address → Page Table → Physical Address → Cache → Memory
+
+
+Page replacement policies:
+
+FIFO
+
+LRU
+
+Tracks:
+
+Page hits
+
+Page faults
+
+Integrated with cache hierarchy
+
+Project Structure
+memory-simulator/
+├─ src/
+│  ├─ allocator/
+│  │  └─ allocator.cpp
+│  ├─ buddy/
+│  │  └─ buddy.cpp
+│  ├─ cache/
+│  │  └─ cache.cpp
+│  ├─ virtual_memory/
+│  │  └─ virtual_memory.cpp
+│  └─ main.cpp
+├─ include/
+│  └─ memsim.h
+├─ tests/
+│  └─ sample_inputs.txt
+├─ docs/
+│  └─ design_document.pdf
+├─ Makefile
+└─ README.md
+
+Build Instructions
+Requirements
+
+C++17 compatible compiler (g++)
+
+Linux / macOS / WSL recommended
+
+Build
+make
+
+
+This will generate the executable:
+
+./memsim
+
+Running the Simulator
+./memsim
+
+
+The simulator runs in interactive CLI mode.
+
+Supported Commands
+Memory Allocation
+init memory <size>
+set allocator first_fit | best_fit | worst_fit
+malloc <size>
+free <block_id>
+dump
+stats
+
+Cache Access
+access <physical_address>
+
+
+Example output:
+
+L1 MISS -> L2 HIT
+
+Virtual Memory
+init_vm <physical_memory_size> <page_size>
+set vm_policy fifo | lru
+vm_access <virtual_address>
+vm_stats
+dump_vm
+
+Buddy Allocator
+(init memory first)
+(use buddy mode internally)
+malloc <size>
+free <id>
+dump
+stats
+
+Exit
+exit
+
+Example Session
+> init memory 1024
+> set allocator first_fit
+> malloc 100
+Allocated id=1
+> malloc 200
+Allocated id=2
+> free 1
+Freed
+> dump
+[0 - 99] FREE
+[100 - 299] USED (id=2)
+[300 - 1023] FREE
+> stats
+Total memory: 1024
+Used memory: 200
+External fragmentation: 35.00%
+
+Assumptions & Simplifications
+
+Single-process simulation
+
+Virtual memory is representational (no explicit disk structure)
+
+Cache write policies (write-back/write-through) are not simulated
+
+No process isolation or protection bits
+
+Deliverables Included
+
+Fully working source code
+
+CLI-based simulator
+
+Multilevel cache implementation
+
+Optional buddy allocator
+
+Optional virtual memory system
+
+Design documentation
+
+Test scripts
+
+Author
+
+Aryan Sharma
+ACM Memory Management Project
