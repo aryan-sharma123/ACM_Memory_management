@@ -34,7 +34,7 @@ memory-simulator/
 
 ## Implemented Features
 
-### ✅ Mandatory Features
+###  Mandatory Features
 
 #### 1. Physical Memory Simulation
 - Simulates a **contiguous block of physical memory**
@@ -78,7 +78,7 @@ Tracked and reported:
 
 ---
 
-### ✅ Mandatory Feature: Multilevel Cache Simulation
+###  Mandatory Feature: Multilevel Cache Simulation
 
 #### Cache Hierarchy
 - **L1, L2, L3 caches**
@@ -107,7 +107,7 @@ Tracked and reported:
 
 ---
 
-### ⚙️ Optional Features Implemented
+###  Optional Features Implemented
 
 #### 1. Buddy Memory Allocation System
 - Memory size restricted to powers of two
@@ -151,6 +151,9 @@ Commands:
 ---
 
 ## Build & Run Instructions
+if you are on windows make sure you should have access of UBUNTU ( WSL )
+-open the terminal/bash 
+-go to the directory of your memory-management folder (using cd /mnt/folder_path ) and start building 
 
 ```bash
 make
