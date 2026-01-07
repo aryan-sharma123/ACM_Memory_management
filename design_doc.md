@@ -1,6 +1,12 @@
+### Author - Aryan
+### En.no - 23112022
+
+
 # Design and Implementation Document  
 ## Memory Management Simulator
 
+
+### outputs :- Logs / SS have been stored in folder  - outputs (txt logs for buddy and alloc , rest in PNG format )
 ---
 
 ## 1. Design Iterations and Efficiency Improvements (Summary)
