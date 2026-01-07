@@ -1,3 +1,7 @@
+## Author - Aryan
+## En.no - 23112022
+
+
 # Memory Management Simulator
 
 ## Overview
