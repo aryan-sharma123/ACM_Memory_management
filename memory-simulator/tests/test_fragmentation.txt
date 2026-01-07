@@ -1,8 +1,0 @@
-init memory 100
-malloc 20
-malloc 20
-malloc 20
-free 2
-dump
-stats
-exit

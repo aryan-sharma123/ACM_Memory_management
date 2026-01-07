@@ -1,7 +1,0 @@
-init memory 100
-set allocator first_fit
-malloc 40
-malloc 30
-dump
-stats
-exit

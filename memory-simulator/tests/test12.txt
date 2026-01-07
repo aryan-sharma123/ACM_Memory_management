@@ -1,8 +1,0 @@
-init_vm 64 16
-access 10
-vm_access 20
-vm_access 20
-access 10
-cache_stats
-vm_stats
-exit

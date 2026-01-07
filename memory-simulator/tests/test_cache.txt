@@ -1,8 +1,0 @@
-access 0
-access 16
-access 32
-access 0
-access 16
-access 48
-cache_stats
-exit
