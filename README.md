@@ -110,6 +110,8 @@ Tracked and reported:
 - `cache_stats`
 
 ---
+- Memory dump output displays **decimal and hexadecimal addresses side-by-side** for improved readability and debugging clarity.
+
 
 ###  Optional Features Implemented
 
