@@ -64,22 +64,40 @@ memory-simulator/
 ├─ docs/                # Design documentation
 ├─ Makefile             # Build script
 └─ README.md
-🛠 Build InstructionsRequirementsC++17 compatible compiler (g++)Linux / macOS / WSL recommendedBuildRun the following command in the root directory:Bashmake
-This will generate the executable: ./memsim🎮 Running the SimulatorLaunch the interactive CLI:Bash./memsim
-Supported CommandsCategoryCommandDescriptionAllocationinit memory <size>Initialize physical memoryset allocator <type>first_fit, best_fit, or worst_fitmalloc <size>Allocate memory blockfree <block_id>Deallocate memory blockCacheaccess <address>Simulate memory access through L1/L2/L3VMinit_vm <size> <page>Initialize Virtual Memory pagingvm_access <address>Translate and access virtual addressSystemstatsDisplay memory and cache statisticsdumpVisualize memory layout📝 Example SessionPlaintext> init memory 1024
-> set allocator first_fit
-> malloc 100
-Allocated id=1
-> malloc 200
-Allocated id=2
-> free 1
-Freed
-> dump
-[0 - 99] FREE
-[100 - 299] USED (id=2)
-[300 - 1023] FREE
-> stats
-Total memory: 1024
-Used memory: 200
-External fragmentation: 35.00%
-⚠️ Assumptions & SimplificationsSingle-process simulation.Virtual memory is representational (no backing disk swap file).Cache write policies (write-back/write-through) are not implemented.No process isolation or protection bits (Read/Write/Execute).👤 AuthorAryan Sharma ACM Memory Management Project
+
+```
+### Build Instructions
+Requirements
+C++17 compatible compiler (g++)
+
+Linux / macOS / WSL recommended
+
+#### Build
+```bash
+make
+```
+This will generate the executable:
+
+```bash
+./memsim
+```
+Running the Simulator
+```bash
+./memsim
+```
+The simulator runs in interactive CLI mode.
+
+Supported Commands
+Memory Allocation
+init memory <size>
+set allocator first_fit | best_fit | worst_fit
+malloc <size>
+free <block_id>
+dump
+stats
+Cache Access
+access <physical_address>
+
+Example output:
+text
+L1 MISS -> L2 HIT
