@@ -243,22 +243,15 @@ The `main.cpp` module:
 
 ---
 
-## 11. Limitations and Simplifications
+## 11. Simplifications
 
-The following were intentionally not implemented:
+Future Improvements :-
 - Per-process page tables
 - TLB simulation
-- Write-back / write-through cache policies
-- Disk latency modeling
 - Multi-threaded access
 
-These choices keep the simulator focused and manageable.
 
----
 
-## 12. Conclusion
-
-This project implements all **mandatory features** and several **optional extensions**.
 
 Design choices were refined during development to improve **efficiency, simplicity, and maintainability**, resulting in a clean and robust memory management simulator.
 
