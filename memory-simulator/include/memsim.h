@@ -6,8 +6,8 @@ using namespace std;
 
 struct Block
 {
-    size_t start;    // starting address
-    size_t size;    // allocated (aligned) size
+    size_t start;   
+    size_t size;    
     size_t requested;    // user requested size
     bool free;
     int id;
@@ -90,3 +90,4 @@ int buddy_malloc(size_t req_size);
 bool buddy_free(int id);
 void dump_buddy();
 void print_buddy_stats();
+
