@@ -1,6 +1,8 @@
 ## Author - Aryan
 ## En.no - 23112022
 
+### outputs :- Logs / SS have been stored in folder  - outputs (txt logs for buddy and alloc , rest in PNG format )
+
 
 # Memory Management Simulator
 
