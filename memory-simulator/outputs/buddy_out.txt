@@ -1,0 +1,42 @@
+Hello......Welcome to Memory Simulator built by - Aryan
+> > Allocated id=1
+> Allocated id=2
+> Allocated id=3
+> [0 - 71] (0x0 - 0x47) USED (id=1)
+[72 - 207] (0x48 - 0xcf) USED (id=2)
+[208 - 471] (0xd0 - 0x1d7) USED (id=3)
+[472 - 1023] (0x1d8 - 0x3ff) FREE
+> Total memory: 1024
+Used memory: 472
+Free memory: 552
+External fragmentation: 0.00%
+Internal fragmentation: 12
+Allocation success rate: 100.00%
+Failed allocations: 0
+Memory utilization: 46.09%
+> Freed
+> Freed
+> [0 - 207] (0x0 - 0xcf) FREE
+[208 - 471] (0xd0 - 0x1d7) USED (id=3)
+[472 - 1023] (0x1d8 - 0x3ff) FREE
+> Total memory: 1024
+Used memory: 264
+Free memory: 760
+External fragmentation: 27.37%
+Internal fragmentation: 4
+Allocation success rate: 100.00%
+Failed allocations: 0
+Memory utilization: 25.78%
+> Allocated id=4
+> [0 - 199] (0x0 - 0xc7) USED (id=4)
+[200 - 207] (0xc8 - 0xcf) FREE
+[208 - 471] (0xd0 - 0x1d7) USED (id=3)
+[472 - 1023] (0x1d8 - 0x3ff) FREE
+> Total memory: 1024
+Used memory: 464
+Free memory: 560
+External fragmentation: 1.43%
+Internal fragmentation: 4
+Allocation success rate: 100.00%
+Failed allocations: 0
+Memory utilization: 45.31%

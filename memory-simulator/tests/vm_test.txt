@@ -1,0 +1,19 @@
+init_vm 256 16
+
+vm_access 0
+vm_access 16
+vm_access 32
+vm_access 48
+
+vm_access 64
+vm_access 80
+vm_access 96
+vm_access 112
+
+vm_access 0
+vm_access 16
+
+vm_stats
+dump_vm
+
+exit

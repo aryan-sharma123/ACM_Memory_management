@@ -1,0 +1,18 @@
+access 0
+access 16
+access 32
+access 48
+
+access 0
+access 16
+
+access 128
+access 256
+access 512
+
+access 128
+access 256
+
+cache_stats
+
+exit

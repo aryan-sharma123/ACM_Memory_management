@@ -1,0 +1,36 @@
+init memory 512
+
+set allocator first_fit
+malloc 64
+malloc 128
+malloc 32
+malloc 64
+
+free 2
+free 4
+
+dump
+stats
+
+set allocator best_fit
+malloc 60
+malloc 30
+
+dump
+stats
+
+set allocator worst_fit
+malloc 100
+
+dump
+stats
+
+free 1
+free 3
+free 5
+free 6
+
+dump
+stats
+
+exit
