@@ -20,6 +20,12 @@ The following key design improvements were made:
 
 These refinements resulted in a cleaner, more efficient, and easier-to-maintain design.
 
+> **Note on Address Representation:**  
+> During debugging and evaluation, memory layouts were initially printed only in decimal form.  
+> To improve clarity and make address interpretation easier, the memory dump output was enhanced to display **decimal and hexadecimal addresses side-by-side**.  
+> This change improves readability without affecting allocator logic or behavior.
+
+
 ---
 
 ## 2. Introduction
@@ -63,6 +69,9 @@ Each memory block stores:
 - Requested size
 - Free/used status
 - Allocation ID
+
+For visualization purposes, memory dumps display block address ranges in **both decimal and hexadecimal formats**, allowing easier cross-verification with low-level address calculations.
+
 
 ---
 
