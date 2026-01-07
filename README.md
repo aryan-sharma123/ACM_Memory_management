@@ -4,6 +4,9 @@
 ### outputs :- Logs / SS have been stored in folder  - outputs (txt logs for buddy and alloc , rest in PNG format )
 
 
+### design document is also uploaded
+
+
 # Memory Management Simulator
 
 ## Overview
