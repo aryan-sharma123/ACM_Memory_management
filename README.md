@@ -1,103 +1,192 @@
-Markdown# Memory Management Simulator
+# Memory Management Simulator
 
-A comprehensive C++ simulation of operating system memory management, covering physical memory allocation, multi-level cache hierarchies, and virtual memory paging.
+## Overview
+This project is a **user-space Memory Management Simulator** that models how an operating system manages memory.  
+It simulates **dynamic memory allocation**, **multilevel CPU caches**, and an **optional virtual memory subsystem**, focusing on algorithmic correctness and clarity rather than kernel-level complexity.
 
----
-
-## 📌 Overview
-This project models how an operating system manages memory at multiple levels. It simulates dynamic memory allocation, multilevel CPU caches, and virtual memory using paging, providing a command-line interface (CLI) for interaction.
-
-The goal is to accurately simulate OS memory-management behavior using well-defined data structures and algorithms, rather than building a functional OS kernel.
+The simulator is interactive and CLI-driven, allowing users to issue memory, cache, and virtual memory commands and observe system behavior.
 
 ---
 
-## 🚀 Features
-
-### 1. Physical Memory Allocation
-* Simulates a contiguous block of physical memory.
-* Supports dynamic allocation and deallocation.
-* Explicit tracking of allocated and free blocks.
-* Automatic **coalescing** of adjacent free blocks.
-
-### 2. Allocation Strategies
-* **First Fit**: Allocates the first block that is large enough.
-* **Best Fit**: Allocates the smallest block that fits to minimize wasted space.
-* **Worst Fit**: Allocates the largest available block.
-* Supports **block splitting** and **fragmentation tracking**.
-
-### 3. Multilevel Cache Simulation (Core Feature)
-* **L1, L2, and L3 caches** with configurable sizes, block sizes, and associativity.
-* **Replacement Policies**: FIFO and LRU.
-* **Addressing**: Tag, index, and offset-based addressing.
-* **Propagation**: Miss penalty propagation across cache levels.
-* **Statistics**: Detailed hit/miss reporting for every memory access.
-
-### 4. Virtual Memory (Extension)
-* Paging-based model: `Virtual Address → Page Table → Physical Address → Cache → Memory`.
-* Page replacement policies: FIFO and LRU.
-* Tracks page hits and page faults.
-
-### 5. Buddy Memory Allocation (Extension)
-* Memory size must be a power of two.
-* Recursive splitting and buddy coalescing using XOR.
-* Internal fragmentation tracking.
-
-### 6. Metrics & Statistics
-* Total, Used, and Free memory tracking.
-* Internal and External fragmentation analysis.
-* Allocation success rates and memory utilization.
-
----
-
-## 📂 Project Structure
-
-```text
+## Project Structure
+``` text
 memory-simulator/
 ├─ src/
-│  ├─ allocator/        # Physical memory allocation logic
-│  ├─ buddy/            # Buddy system implementation
-│  ├─ cache/            # L1/L2/L3 cache logic
-│  ├─ virtual_memory/   # Paging and translation
-│  └─ main.cpp          # CLI and Entry point
-├─ include/             # Header files (memsim.h)
-├─ tests/               # Sample input scripts
-├─ docs/                # Design documentation
-├─ Makefile             # Build script
+│ ├─ allocator/
+│ │ └─ allocator.cpp
+│ ├─ buddy/
+│ │ └─ buddy.cpp
+│ ├─ cache/
+│ │ └─ cache.cpp
+│ ├─ virtual_memory/
+│ │ └─ virtual_memory.cpp
+│ └─ main.cpp
+├─ include/
+│ └─ memsim.h
+├─ tests/
+│ └─ sample_inputs.txt
+├─ docs/
+│ └─ design_document.pdf
+├─ Makefile
 └─ README.md
-
 ```
-### Build Instructions
-Requirements
-C++17 compatible compiler (g++)
 
-Linux / macOS / WSL recommended
 
-#### Build
+## Implemented Features
+
+### ✅ Mandatory Features
+
+#### 1. Physical Memory Simulation
+- Simulates a **contiguous block of physical memory**
+- Memory is dynamically split and merged based on allocation requests
+- Memory blocks track:
+  - Start address
+  - Allocated size (aligned)
+  - Requested size
+  - Allocation status
+
+#### 2. Dynamic Memory Allocation Strategies
+Implemented and selectable at runtime:
+- **First Fit**
+- **Best Fit**
+- **Worst Fit**
+
+Each allocation:
+- Finds a suitable free block
+- Splits blocks if required
+- Tracks allocated and free regions explicitly
+
+Each deallocation:
+- Frees the block
+- **Coalesces adjacent free blocks** to reduce fragmentation
+
+#### 3. Allocation Interface (CLI)
+Supported commands:
+- `init memory <size>`
+- `set allocator first_fit | best_fit | worst_fit`
+- `malloc <size>`
+- `free <id>`
+- `dump`
+- `stats`
+
+#### 4. Metrics and Statistics
+Tracked and reported:
+- Internal fragmentation
+- External fragmentation
+- Allocation success / failure count
+- Memory utilization
+
+---
+
+### ✅ Mandatory Feature: Multilevel Cache Simulation
+
+#### Cache Hierarchy
+- **L1, L2, L3 caches**
+- Configurable:
+  - Cache size
+  - Block size
+  - Associativity
+- Set-associative cache structure
+
+#### Cache Replacement Policies
+- **FIFO** (mandatory)
+- **LRU** (implemented using timestamps)
+
+#### Cache Behavior
+- Memory accesses flow as:
+- L1 → L2 → L3 → Main Memory
+- On each access:
+- Hit or miss is detected per level
+- Miss penalties propagate to lower levels
+- Access time is accumulated
+
+#### CLI Command
+- `access <address>`
+- Cache statistics printed using:
+- `cache_stats`
+
+---
+
+### ⚙️ Optional Features Implemented
+
+#### 1. Buddy Memory Allocation System
+- Memory size restricted to powers of two
+- Allocation rounds up to nearest power of two
+- Recursive block splitting and buddy coalescing
+- Tracks buddy-specific internal fragmentation
+
+Commands:
+- `buddy_malloc <size>`
+- `buddy_free <id>`
+- `dump` (in buddy mode)
+- `stats` (in buddy mode)
+
+#### 2. Virtual Memory Simulation (Paging)
+- Virtual to physical address translation
+- Single global page table (simplified model)
+- Page replacement:
+- FIFO
+- LRU
+- Page hit / fault tracking
+- Cache accessed **after** address translation
+
+Commands:
+- `init_vm <physical_memory> <page_size>`
+- `vm_access <virtual_address>`
+- `vm_stats`
+- `dump_vm`
+
+> Note: Disk access and page movement are simulated representationally as per project guidelines.
+
+---
+
+## Design Choices & Assumptions
+
+- **Vectors are used instead of linked lists** for memory block management for simplicity and cache friendliness
+- Single-process memory model (no per-process page tables)
+- Disk and write-back cache policies are representational and not explicitly simulated
+- Memory alignment handled explicitly (8-byte alignment)
+- Focus is on correctness and clarity rather than hardware-accurate timing
+
+---
+
+## Build & Run Instructions
+
 ```bash
 make
-```
-This will generate the executable:
-
-```bash
 ./memsim
 ```
-Running the Simulator
-```bash
-./memsim
+### Example Usage
+```text
+> init memory 1024
+> set allocator best_fit
+> malloc 100
+> malloc 200
+> free 1
+> dump
+> stats
+
+> access 128
+> access 128
+> cache_stats
+
+> init_vm 512 16
+> vm_access 64
+> vm_stats
 ```
-The simulator runs in interactive CLI mode.
 
-Supported Commands
-Memory Allocation
-init memory <size>
-set allocator first_fit | best_fit | worst_fit
-malloc <size>
-free <block_id>
-dump
-stats
-Cache Access
-access <physical_address>
+### Further Improvements
 
-Example output:
-text
-L1 MISS -> L2 HIT
+- Write-back / write-through cache policies
+- Per-process virtual address spaces
+- TLB simulation
+- Multi-threaded access simulation
+- Detailed disk latency modeling
+
+
+### Notes
+
+- All mandatory features are fully implemented
+- Optional features are clearly separated and documented
+- Sample test inputs and output logs are provided in the tests/ directory
+
