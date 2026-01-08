@@ -4,7 +4,7 @@
 ### outputs :- Logs / SS have been stored in folder  - outputs (txt logs for buddy and alloc , rest in PNG format )
 
 
-[demo video link](https://drive.google.com/file/d/1MBbV6iVKyJeuompEs1fMbb5cJknr-hfX/view?usp=drive_link)
+### [demo video link](https://drive.google.com/file/d/1MBbV6iVKyJeuompEs1fMbb5cJknr-hfX/view?usp=drive_link)
 
 
 ### design document is also uploaded
