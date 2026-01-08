@@ -200,9 +200,4 @@ make
 
 
 
-### Notes
-
-- All mandatory features are fully implemented
-- Optional features are clearly separated and documented
-- Sample test inputs and output logs are provided in the tests/ directory
 
