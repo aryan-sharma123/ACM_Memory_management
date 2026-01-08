@@ -194,6 +194,12 @@ int main(){
             }
             total_access_time += access_time;
         }
+        else if (cmd == "cache_stats")
+        {
+            print_cache_stats(L1);
+            print_cache_stats(L2);
+            print_cache_stats(L3);
+        }
         else if (cmd == "vm_stats"){ print_vm_stats();}
         else if (cmd == "dump_vm") { dump_page_table();}
         else if (cmd == "exit"){  break;}
@@ -202,3 +208,4 @@ int main(){
 
     return 0;
 }
+
