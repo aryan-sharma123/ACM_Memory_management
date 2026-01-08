@@ -194,11 +194,10 @@ make
 
 ### Further Improvements
 
-- Write-back / write-through cache policies
 - Per-process virtual address spaces
 - TLB simulation
 - Multi-threaded access simulation
-- Detailed disk latency modeling
+
 
 
 ### Notes
